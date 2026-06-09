@@ -39,6 +39,33 @@ imprime el resultado de cada refactorización por consola.
 
 ---
 
+## Pruebas automatizadas (Cucumber)
+
+Cada problema tiene pruebas de comportamiento escritas en **Gherkin (español)** y
+ejecutadas con **Cucumber** sobre TypeScript, siguiendo el enfoque del artículo
+referenciado en la consigna ([Cucumber in TypeScript](https://daniel-delimata.medium.com/cucumber-in-the-typescript-a86bd03117a7)).
+
+```bash
+npm install
+npm test
+```
+
+Resultado: **11 escenarios / 45 pasos** en verde.
+
+Qué verifica cada feature:
+
+| Feature | Principios | Qué prueba |
+|---------|-----------|------------|
+| [`problema1-srp-ocp.feature`](./features/problema1-srp-ocp.feature) | SRP + OCP | Cada método de envío calcula su costo; `OrderService` cobra `monto + envío` y notifica; agregar **Drones** funciona sin tocar `OrderService` (OCP). |
+| [`problema2-lsp-isp.feature`](./features/problema2-lsp-isp.feature) | LSP + ISP | El Word soporta abrir/editar/guardar; el PDF **solo** abre y **no expone** editar/guardar (ISP); `visualizar` acepta cualquier `Abrible` (LSP). |
+| [`problema3-dip.feature`](./features/problema3-dip.feature) | DIP | El mismo `Switch` opera bombilla, luz inteligente y ventilador con solo cambiar el dispositivo inyectado. |
+
+Las definiciones de pasos están en [`features/step_definitions/`](./features/step_definitions/)
+y usan **dobles de prueba** (espías de pago/notificación) y captura de consola para
+verificar el comportamiento real de las clases.
+
+---
+
 ## La estrategia, problema por problema
 
 La actividad tiene **tres problemas independientes**. Cada uno parte de un
@@ -101,6 +128,11 @@ junio/design/
 ├── problema1-srp-ocp.ts    Problema 1 — SRP + OCP
 ├── problema2-lsp-isp.ts    Problema 2 — LSP + ISP
 ├── problema3-dip.ts        Problema 3 — DIP
+├── features/               Pruebas Cucumber
+│   ├── *.feature           Escenarios en Gherkin (español)
+│   ├── step_definitions/   Definiciones de los pasos
+│   └── support/            World + helper de captura de consola
+├── cucumber.json           Configuración de Cucumber
 ├── package.json
 └── tsconfig.json           (strict: true)
 ```

@@ -2,10 +2,13 @@
   "name": "design-solid",
   "version": "1.0.0",
   "scripts": {
-    "start": "npx ts-node index.ts"
+    "start": "npx ts-node index.ts",
+    "test": "cucumber-js"
   },
   "devDependencies": {
+    "@cucumber/cucumber": "^11.3.0",
+    "@types/node": "^25.9.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.0"
+    "typescript": "^5.9.3"
   }
 }
